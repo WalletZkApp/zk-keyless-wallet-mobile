@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "ZK Wallet",
+    "slug": "zkapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow ZK Wallet to access camera.",
+        "NSMicrophoneUsageDescription": "Allow ZK Wallet to access your microphone",
+        "NSFaceIDUsageDescription": "Allow ZK Wallet to access Face ID"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "USE_FINGERPRINT",
+        "USE_BIOMETRIC"
+      ],
+      "package": "com.zkwallet.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "Allow ZK Wallet to access camera."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "51aa01bc-9562-4cc6-b09d-5cce95acd2b9"
+      }
+    }
+  }
+}
