@@ -1,6 +1,6 @@
 // React Native Navigation
 import "react-native-gesture-handler";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import {
   CardStyleInterpolators,
   createStackNavigator,
@@ -48,8 +48,24 @@ import ThemeProvider from "./context/theme_context";
 import { PaperProvider } from "react-native-paper";
 import Scanner from "./pages/scanner";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
+
 export default function App() {
+  const [onboarding, setOnboarding] = useState<boolean>();
   const Stack = createStackNavigator();
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const jsonValue = await AsyncStorage.getAllKeys();
+    if (jsonValue.includes("account")) {
+      setOnboarding(false);
+    }
+  };
+
   return (
     <>
       <ThemeProvider>
@@ -60,7 +76,7 @@ export default function App() {
                 headerShown: false,
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
               }}
-              initialRouteName="Feature"
+              initialRouteName={onboarding ? "Onboarding1" : "Feature"}
             >
               {/* Onboarding  */}
               <Stack.Screen name="Onboarding1" component={Onboarding1} />
