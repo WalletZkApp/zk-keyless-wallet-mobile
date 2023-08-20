@@ -1,6 +1,6 @@
-import { useContext, useMemo, useRef } from "react";
+import { useCallback, useContext, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import BottomSheet from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import { themeContext } from "../../../context/theme_context";
@@ -18,6 +18,18 @@ export default function SwapBottomSheet({ show, setShow }: detail) {
   const snapPoints = useMemo(() => ["25%"], []);
 
   const { primaryBackground, primaryFont } = useContext(themeContext);
+
+  // renders
+  const renderBackdrop = useCallback(
+    (props: any) => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+      />
+    ),
+    []
+  );
 
   return (
     <>
@@ -40,6 +52,7 @@ export default function SwapBottomSheet({ show, setShow }: detail) {
         }}
         backgroundStyle={{ backgroundColor: primaryBackground }}
         handleIndicatorStyle={{ backgroundColor: primaryFont }}
+        backdropComponent={renderBackdrop}
       >
         <View
           style={{ backgroundColor: primaryBackground }}
@@ -68,6 +81,7 @@ export default function SwapBottomSheet({ show, setShow }: detail) {
               </View>
             </View>
           </TouchableOpacity>
+
           <TouchableOpacity onPress={() => navigation.navigate("Receive")}>
             <View className="flex-row items-center space-x-4 mt-8">
               <TouchableOpacity>

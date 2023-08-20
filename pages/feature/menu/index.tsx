@@ -163,7 +163,7 @@ export default function Menu() {
             onValueChange={switchMode}
           />
         </View>
-        <TouchableNativeFeedback
+        {/* <TouchableNativeFeedback
           onPress={() => {
             navigation.navigate("AccountManagement");
           }}
@@ -191,7 +191,7 @@ export default function Menu() {
             </View>
             <Ionicons color={primaryFont} name="chevron-forward" size={30} />
           </View>
-        </TouchableNativeFeedback>
+        </TouchableNativeFeedback> */}
         {menuList.map((item) => {
           return (
             <TouchableNativeFeedback

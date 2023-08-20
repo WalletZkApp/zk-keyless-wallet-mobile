@@ -1,6 +1,6 @@
-import { useContext, useMemo, useRef } from "react";
+import { useCallback, useContext, useMemo, useRef } from "react";
 import { View, Text } from "react-native";
-import BottomSheet from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 import { themeContext } from "../../../../context/theme_context";
 
 interface detail {
@@ -23,6 +23,18 @@ export default function AccountDetails({
   // variables
   const snapPoints = useMemo(() => ["50%"], []);
 
+  // renders
+  const renderBackdrop = useCallback(
+    (props: any) => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+      />
+    ),
+    []
+  );
+
   return (
     <BottomSheet
       ref={bottomSheetRef}
@@ -33,6 +45,7 @@ export default function AccountDetails({
       onClose={() => setShow(false)}
       backgroundStyle={{ backgroundColor: primaryBackground }}
       handleIndicatorStyle={{ backgroundColor: primaryFont }}
+      backdropComponent={renderBackdrop}
     >
       <View
         style={{ backgroundColor: primaryBackground }}

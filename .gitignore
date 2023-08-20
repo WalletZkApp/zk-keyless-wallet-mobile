@@ -130,3 +130,5 @@ dist
 .pnp.*
 
 google-services.json
+.expo
+yarn.lock
